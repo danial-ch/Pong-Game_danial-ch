@@ -10,8 +10,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 
-public class SetupGame{
-    public static void setupGameDetails(){
+public class SetupGame {
+    public static void setupGameDetails() {
         Main.player1Rectangle.setArcHeight(15);
         Main.player1Rectangle.setArcWidth(15);
         Main.player1Rectangle.setFill(Color.GREEN);
@@ -69,23 +69,22 @@ public class SetupGame{
         Main.player2Helper.setVisible(false);
     }
 
-    public static void changeRectangle(Rectangle rectangle, ToggleButton colorChooser){
-        if (rectangle.getFill().equals(Color.GREEN)){
+    public static void changeRectangle(Rectangle rectangle, ToggleButton colorChooser) {
+        if (rectangle.getFill().equals(Color.GREEN)) {
             colorChooser.setSelected(true);
             rectangle.setFill(Color.RED);
             rectangle.setHeight(60);
-        }
-        else{
+        } else {
             colorChooser.setSelected(false);
             rectangle.setFill(Color.GREEN);
             rectangle.setHeight(90);
         }
     }
 
-    public static void eventHandling(){
+    public static void eventHandling() {
         Main.playButton.onMouseClickedProperty().setValue(mouseEvent -> {
-            Main.player1Health=5;
-            Main.player2Health=5;
+            Main.player1Health = 5;
+            Main.player2Health = 5;
             Main.player1HealthBar.setText(String.valueOf(Main.player1Health));
             Main.player2HealthBar.setText(String.valueOf(Main.player2Health));
             Main.player1ColorChooser.setVisible(false);
@@ -100,13 +99,12 @@ public class SetupGame{
         Main.exitButton.onMouseClickedProperty().setValue(event -> Platform.exit());
 
         Main.player1ColorChooser.setOnMouseClicked(mouseEvent -> {
-            if(Main.player1ColorChooser.isSelected()){
+            if (Main.player1ColorChooser.isSelected()) {
                 Main.player1ColorChooser.setStyle("-fx-background-color: red");
                 Main.player1ColorChooser.setText("Fast");
                 Main.player1Rectangle.setFill(Color.RED);
                 Main.player1Rectangle.setHeight(60);
-            }
-            else{
+            } else {
                 Main.player1ColorChooser.setStyle("-fx-background-color: green");
                 Main.player1ColorChooser.setText("Long");
                 Main.player1Rectangle.setFill(Color.GREEN);
@@ -115,13 +113,12 @@ public class SetupGame{
         });
 
         Main.player2ColorChooser.setOnMouseClicked(mouseEvent -> {
-            if(Main.player2ColorChooser.isSelected()){
+            if (Main.player2ColorChooser.isSelected()) {
                 Main.player2ColorChooser.setStyle("-fx-background-color: red");
                 Main.player2ColorChooser.setText("Fast");
                 Main.player2Rectangle.setFill(Color.RED);
                 Main.player2Rectangle.setHeight(60);
-            }
-            else{
+            } else {
                 Main.player2ColorChooser.setStyle("-fx-background-color: green");
                 Main.player2ColorChooser.setText("Long");
                 Main.player2Rectangle.setFill(Color.GREEN);
@@ -130,32 +127,30 @@ public class SetupGame{
         });
 
         Main.scene.addEventFilter(KeyEvent.ANY, keyEvent -> {
-            if(keyEvent.getCode() == KeyCode.NUMPAD5){
-                if(Main.player2Rectangle.getY()+Main.player2Rectangle.getHeight()<= Main.scene.getHeight()){
-                    Main.player2Rectangle.setY(Main.player2Rectangle.getY()+14);
+            if (keyEvent.getCode() == KeyCode.NUMPAD5) {
+                if (Main.player2Rectangle.getY() + Main.player2Rectangle.getHeight() <= Main.scene.getHeight()) {
+                    Main.player2Rectangle.setY(Main.player2Rectangle.getY() + 14);
                 }
-            }
-            else if(keyEvent.getCode() == KeyCode.NUMPAD8){
-                if(Main.player2Rectangle.getY()>=0){
-                    Main.player2Rectangle.setY(Main.player2Rectangle.getY()-14);
+            } else if (keyEvent.getCode() == KeyCode.NUMPAD8) {
+                if (Main.player2Rectangle.getY() >= 0) {
+                    Main.player2Rectangle.setY(Main.player2Rectangle.getY() - 14);
                 }
-            }
-            else if (keyEvent.getCode() == KeyCode.NUMPAD7){
-                changeRectangle(Main.player2Rectangle,Main.player2ColorChooser);
+            } else if (keyEvent.getCode() == KeyCode.NUMPAD7) {
+                changeRectangle(Main.player2Rectangle, Main.player2ColorChooser);
             }
         });
 
         Main.scene.addEventFilter(KeyEvent.ANY, keyEvent -> {
             if (keyEvent.getCode() == KeyCode.S) {
-                if (Main.player1Rectangle.getY() + Main.player1Rectangle.getHeight() <=  Main.scene.getHeight()) {
+                if (Main.player1Rectangle.getY() + Main.player1Rectangle.getHeight() <= Main.scene.getHeight()) {
                     Main.player1Rectangle.setY(Main.player1Rectangle.getY() + 14);
                 }
             } else if (keyEvent.getCode() == KeyCode.W) {
                 if (Main.player1Rectangle.getY() >= 0) {
                     Main.player1Rectangle.setY(Main.player1Rectangle.getY() - 14);
                 }
-            } else if (keyEvent.getCode() == KeyCode.Q){
-                changeRectangle(Main.player1Rectangle,Main.player1ColorChooser);
+            } else if (keyEvent.getCode() == KeyCode.Q) {
+                changeRectangle(Main.player1Rectangle, Main.player1ColorChooser);
             }
         });
     }

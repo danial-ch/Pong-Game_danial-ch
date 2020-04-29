@@ -5,7 +5,7 @@ import javafx.scene.shape.Circle;
 
 import java.util.Random;
 
-public class Ball{
+public class Ball {
 
     private static Ball single_instance = null;
 
@@ -26,14 +26,13 @@ public class Ball{
         randomBall();
     }
 
-    public void randomBall(){
+    public void randomBall() {
         boolean isBlue = new Random().nextBoolean();
-        if(isBlue){
-            speedAmount=10;
+        if (isBlue) {
+            speedAmount = 10;
             this.ball.setFill(Color.BLUE);
-        }
-        else{
-            speedAmount=7;
+        } else {
+            speedAmount = 7;
             this.ball.setFill(Color.RED);
         }
     }
