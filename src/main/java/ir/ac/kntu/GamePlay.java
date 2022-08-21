@@ -28,9 +28,14 @@ public class GamePlay {
             launchAngle = Math.toRadians(new Random().nextInt(360));
         } while ((launchAngle > Math.PI / 3 && launchAngle < Math.PI * 2 / 3) || (launchAngle > Math.PI * 4 / 3 && launchAngle < Math.PI * 5 / 3));
 
-        ball.setSpeedX(ball.getSpeedAmount() * (Math.cos(launchAngle) * Math.cos(launchAngle)));
-        ball.setSpeedY(ball.getSpeedAmount() * (Math.sin(launchAngle) * Math.sin(launchAngle)));
+        System.out.println(ball.getSpeedAmount());
+        ball.setSpeedX(ball.getSpeedAmount()*Math.cos(launchAngle));
+        System.out.println(ball.getSpeedX());
+        ball.setSpeedY(ball.getSpeedAmount()*Math.sin(launchAngle));
+        System.out.println(ball.getSpeedY());
         Main.root.getChildren().add(ball.getBall());
+        System.out.println(ball.getSpeedAmount());
+        System.out.println("---------------------------");
     }
 
     public static void ballMovement() {
@@ -56,7 +61,7 @@ public class GamePlay {
                 flag = false;
                 Main.root.getChildren().remove(ball.getBall());
                 moveBall.stop();
-                startGame();
+                startGame(0);
                 return;
             }
             ball.getBall().setCenterX(ball.getBall().getCenterX() + ball.getSpeedX());
@@ -93,10 +98,13 @@ public class GamePlay {
     }
 
 
-    public static void startGame() {
+    public static void startGame(int choice) {
         if (Main.player1Health > 0 && Main.player2Health > 0) {
             spawnBall();
             Ball.getInstance().randomBall();
+            if(choice==1){
+                AI.AIStart();
+            }
             ballMovement();
         } else {   //End Game
             Text victoryMassage = new Text();
@@ -127,7 +135,8 @@ public class GamePlay {
         Main.player1ColorChooser.setVisible(true);
         Main.player2ColorChooser.setVisible(true);
         Main.exitButton.setVisible(true);
-        Main.playButton.setVisible(true);
+        Main.onePlayerButton.setVisible(true);
+        Main.twoPlayerButton.setVisible(true);
         Main.player1Helper.setVisible(false);
         Main.player2Helper.setVisible(false);
 

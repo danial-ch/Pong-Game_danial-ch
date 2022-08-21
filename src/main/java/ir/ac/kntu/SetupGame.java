@@ -20,17 +20,24 @@ public class SetupGame {
         Main.player2Rectangle.setArcWidth(15);
         Main.player2Rectangle.setFill(Color.GREEN);
 
-        Main.playButton.setPrefWidth(100);
-        Main.playButton.setPrefHeight(30);
-        Main.playButton.setTranslateX(400);
-        Main.playButton.setLayoutY(150);
-        Main.playButton.setStyle("-fx-background-color: khaki");
-        Main.playButton.setDefaultButton(false);
+        Main.onePlayerButton.setPrefWidth(100);
+        Main.onePlayerButton.setPrefHeight(30);
+        Main.onePlayerButton.setTranslateX(400);
+        Main.onePlayerButton.setLayoutY(150);
+        Main.onePlayerButton.setStyle("-fx-background-color: khaki");
+        Main.onePlayerButton.setDefaultButton(false);
+
+        Main.twoPlayerButton.setPrefWidth(100);
+        Main.twoPlayerButton.setPrefHeight(30);
+        Main.twoPlayerButton.setTranslateX(400);
+        Main.twoPlayerButton.setLayoutY(200);
+        Main.twoPlayerButton.setStyle("-fx-background-color: khaki");
+        Main.twoPlayerButton.setDefaultButton(false);
 
         Main.exitButton.setPrefWidth(100);
         Main.exitButton.setPrefHeight(30);
         Main.exitButton.setTranslateX(400);
-        Main.exitButton.setLayoutY(200);
+        Main.exitButton.setLayoutY(250);
         Main.exitButton.setStyle("-fx-background-color: khaki");
         Main.exitButton.setDefaultButton(false);
 
@@ -82,7 +89,7 @@ public class SetupGame {
     }
 
     public static void eventHandling() {
-        Main.playButton.onMouseClickedProperty().setValue(mouseEvent -> {
+        Main.twoPlayerButton.onMouseClickedProperty().setValue(mouseEvent -> {
             Main.player1Health = 5;
             Main.player2Health = 5;
             Main.player1HealthBar.setText(String.valueOf(Main.player1Health));
@@ -90,10 +97,26 @@ public class SetupGame {
             Main.player1ColorChooser.setVisible(false);
             Main.player2ColorChooser.setVisible(false);
             Main.exitButton.setVisible(false);
-            Main.playButton.setVisible(false);
+            Main.onePlayerButton.setVisible(false);
+            Main.twoPlayerButton.setVisible(false);
             Main.player1Helper.setVisible(true);
             Main.player2Helper.setVisible(true);
-            GamePlay.startGame();
+            GamePlay.startGame(0);
+        });
+
+        Main.onePlayerButton.onMouseClickedProperty().setValue(mouseEvent -> {
+            Main.player1Health = 5;
+            Main.player2Health = 5;
+            Main.player1HealthBar.setText(String.valueOf(Main.player1Health));
+            Main.player2HealthBar.setText(String.valueOf(Main.player2Health));
+            Main.player1ColorChooser.setVisible(false);
+            Main.player2ColorChooser.setVisible(false);
+            Main.exitButton.setVisible(false);
+            Main.onePlayerButton.setVisible(false);
+            Main.twoPlayerButton.setVisible(false);
+            Main.player1Helper.setVisible(true);
+            Main.player2Helper.setVisible(true);
+            GamePlay.startGame(1);
         });
 
         Main.exitButton.onMouseClickedProperty().setValue(event -> Platform.exit());
@@ -127,11 +150,11 @@ public class SetupGame {
         });
 
         Main.scene.addEventFilter(KeyEvent.ANY, keyEvent -> {
-            if (keyEvent.getCode() == KeyCode.NUMPAD5) {
+            if (keyEvent.getCode() == KeyCode.DOWN) {
                 if (Main.player2Rectangle.getY() + Main.player2Rectangle.getHeight() <= Main.scene.getHeight()) {
                     Main.player2Rectangle.setY(Main.player2Rectangle.getY() + 14);
                 }
-            } else if (keyEvent.getCode() == KeyCode.NUMPAD8) {
+            } else if (keyEvent.getCode() == KeyCode.UP) {
                 if (Main.player2Rectangle.getY() >= 0) {
                     Main.player2Rectangle.setY(Main.player2Rectangle.getY() - 14);
                 }

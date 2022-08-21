@@ -29,10 +29,10 @@ public class Ball {
     public void randomBall() {
         boolean isBlue = new Random().nextBoolean();
         if (isBlue) {
-            speedAmount = 10;
+            this.speedAmount = 10;
             this.ball.setFill(Color.BLUE);
         } else {
-            speedAmount = 7;
+            this.speedAmount = 7;
             this.ball.setFill(Color.RED);
         }
     }

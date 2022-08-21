@@ -16,10 +16,11 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     static Group root = new Group();
-    static Scene scene = new Scene(root, 900, 500, Color.YELLOWGREEN);
+    static Scene scene = new Scene(root, 900, 500, Color.web("#C7F5DD"));
     static Rectangle player1Rectangle = new Rectangle(20, 100, 15, 90);
     static Rectangle player2Rectangle = new Rectangle(865, 250, 15, 90);
-    static Button playButton = new Button("Play");
+    static Button onePlayerButton = new Button("1 Player");
+    static Button twoPlayerButton = new Button("2 Player");
     static Button exitButton = new Button("Exit");
     static ToggleButton player1ColorChooser = new ToggleButton("Long");
     static ToggleButton player2ColorChooser = new ToggleButton("Long");
@@ -39,7 +40,8 @@ public class Main extends Application {
         SetupGame.setupGameDetails();
         SetupGame.eventHandling();
 
-        root.getChildren().add(playButton);
+        root.getChildren().add(onePlayerButton);
+        root.getChildren().add(twoPlayerButton);
         root.getChildren().add(exitButton);
         root.getChildren().add(player1ColorChooser);
         root.getChildren().add(player2ColorChooser);
